@@ -16,6 +16,7 @@ A small note taking app for anyone to use as they see fit. It autosaves every 45
 
 <details>
     <summary>Please click for older version changelogs</summary>
+    
     ### Changelog v0.2.1
     * Sort dropdown selectbox by date (last modified)
     * New config for versioning
