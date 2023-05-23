@@ -63,3 +63,12 @@ If you set the option NoEmptySave to 'true', Jotter will delete files that are e
 Jotter has a darkmode for those of you who wish to use such a feature. Set the value to 'true' for darkmode to be enabled.
 
 ## Filenames
+If you wish to use Jotter with daily files, please make sure to add the following sections to the filename:
+- %DD - will be replaced with a two-digit number, representing the day of the month
+- %MM - will be replaced with a two-digit number, representing the month
+- %YYYY - will be replaced with a four-digit number, representing the year
+
+The .txt-extension is added automatically by the app when creating the file. You can also use Jotter with a single file for storing data. If so, please replace the %DD-%MM-%YYYY in the filename with a static filename (again, without .txt) and set 'SingleFile' to 'true'
+
+## To edit or not to edit old notes
+If you wish to be able to edit older notes, please set 'EditOldNotes' to 'true'. The default setting for this option is false. You will still be able to read the notes, but not edit them. 
