@@ -52,7 +52,7 @@ If you wish to use Jotter with daily files, please make sure to add the followin
 
 The .txt-extension is added automatically by the app when creating the file. You can also use Jotter with a single file for storing data. If so, please replace the %DD-%MM-%YYYY in the filename with a static filename (again, without .txt) and set 'SingleFile' to 'true'
 
-## To edit or not to edit old notes
+### To edit or not to edit old notes
 If you wish to be able to edit older notes, please set 'EditOldNotes' to 'true'. The default setting for this option is false. You will still be able to read the notes, but not edit them. 
 
 ### Darkmode
