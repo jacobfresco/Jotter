@@ -14,22 +14,31 @@ A small note taking app for anyone to use as they see fit. It autosaves every 45
 * UX is now a separate file (ux.au3)
 * Added transparancy option via .ini
 
-<details>
-    <summary>Please click for older version changelogs</summary>
-    
-### Changelog v0.2.1
-* Sort dropdown selectbox by date (last modified)
-* New config for versioning
-* Added scrollbar to dropdown list
-* Show limited items in dropdown (10)
+## Installation
+Jotter is compiled as a standalone executable, therefore requiring no installation. Just download the latest [release](https://github.com/jacobfresco/jotter/releases/tag/0.2.2) and copy the files anywhere you want them. Create a jotter.ini, launch the app and start taking notes!
 
-### Changelog v0.2
-* Added reminders to the text
+## Configuring jotter.ini
+```
+[main]
+title=Jotter
 
-### Changelog v0.1.1
-* Changed filenames to %DD-%MM-%YYY.txt
+[system]
+SavePath=[Path where Jotter saves the file(s)]
+SingleFile=[true|false]
+SaveFileName=%DD-%MM-%YYYY
+# SaveFileName=singlesave
+EditOldNotes=[true|false]
+FontSize=12
+Darkmode=[true|false]
+NoEmptySave=[true|false]
 
-### Changelog v0.1
-* First release
-</details>
+[Reminders]
+Active=[true|false]
+Tag=[@]
+Title=[The title showing on the reminder]
 
+[Window]
+Xpos=[A point on the screen]
+Ypos=[Another point on the screen]
+Transparancy=[A value between 0 and 250]
+```
