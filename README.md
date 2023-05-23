@@ -54,7 +54,7 @@ You can set a reminder using the below syntax on a new line in Jotter
 The reminder will be shown on the time set and show the text after the time. Please note; this is the default syntax. You're able to set a custom tag for reminders. Please see [jotter.ini](https://github.com/jacobfresco/jotter#configuring-jotterini) on how to do so. 
 
 ## Tranparancy
-You can make the Jotter window more or less transparant by setting a value in jotter.ini. The value needs to be between 0 and 250. Please note that setting the value too low (i.e below 150) will result in a nearly invisible window and a unusable app. The recommended value for this setting is 220
+You can make the Jotter window more or less transparant by setting a value in [jotter.ini](https://github.com/jacobfresco/jotter#configuring-jotterini). The value needs to be between 0 and 250. Please note that setting the value too low (i.e below 150) will result in a nearly invisible window and a unusable app. The recommended value for this setting is 220
 
 ## Do not save empty files
 If you set the option NoEmptySave to 'true', Jotter will delete files that are empty when you exit the app. Setting the value to false will keep the file, even if it's empty.
