@@ -17,18 +17,19 @@ A small note taking app for anyone to use as they see fit. It autosaves every 45
 <details>
     <summary>Please click for older version changelogs</summary>
     
-    ### Changelog v0.2.1
-    * Sort dropdown selectbox by date (last modified)
-    * New config for versioning
-    * Added scrollbar to dropdown list
-    * Show limited items in dropdown (10)
+### Changelog v0.2.1
+* Sort dropdown selectbox by date (last modified)
+* New config for versioning
+* Added scrollbar to dropdown list
+* Show limited items in dropdown (10)
 
-    ### Changelog v0.2
-    * Added reminders to the text
+### Changelog v0.2
+* Added reminders to the text
 
-    ### Changelog v0.1.1
-    * Changed filenames to %DD-%MM-%YYY.txt
+### Changelog v0.1.1
+* Changed filenames to %DD-%MM-%YYY.txt
 
-    ### Changelog v0.1
-    * First release
+### Changelog v0.1
+* First release
 </details>
+
