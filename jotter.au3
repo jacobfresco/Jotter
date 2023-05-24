@@ -74,7 +74,7 @@ Global $frmmain
 
 # Lees de INI file
 Local $iniFile = "jotter.ini"
-
+ 
 
 If @error > 0 then
 	MsgBox($MB_SYSTEMMODAL, "Error while reading", "Error reading " & $inifile & ". Press OK to create a default INI-file")
