@@ -40,6 +40,7 @@
 Func _CheckFileExist($FileToCheck)
 
 	# Controleer of het bestand voor vandaag al bestaat. Zo niet, maak het aan.
+	$DefaultTXT = ""
 	If Not FileExists($FileToCheck) Then
 		$hFileOpen = FileOpen($FileToCheck, 2)
 		If @error > 0 then
@@ -49,8 +50,6 @@ Func _CheckFileExist($FileToCheck)
 		If FileExists("default.txt") Then
 			$hdefaultOpen = FileOpen("default.txt", 0)
 			$defaultTXT = FileRead("default.txt")
-		Else
-			$defaultTXT = ""
 		EndIf
 		FileWriteLine($hFileOpen, $defaultTXT)
 		FileClose($hFileOpen)
@@ -131,7 +130,6 @@ EndFunc
 
 
 Func _OpenFile($FileToOpen)
-
 	# Open het bestand en toon de inhoud in de Editbox
 	$hFileOpen = FileOpen($FileToOpen,0)
 	If @error > 0 then
