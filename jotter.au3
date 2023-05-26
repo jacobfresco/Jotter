@@ -14,6 +14,7 @@
 $JotterVersion = "0.2.3"
 
 # Changelog v0.2.3
+#TraySetOnEvent
 
 # Changelog v0.2.2
 # Removed logging option
