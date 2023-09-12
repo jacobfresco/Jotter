@@ -29,6 +29,7 @@ title=Jotter
 
 [system]
 SavePath=[Path where Jotter saves the file(s)]
+ArchivePath=[Path where Jotter archives old notes]
 SingleFile=[true|false]
 SaveFileName=%DD-%MM-%YYYY
 # SaveFileName=singlesave
