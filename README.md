@@ -47,6 +47,7 @@ Title=[The title showing on the reminder]
 Xpos=[A point on the screen]
 Ypos=[Another point on the screen]
 Transparancy=[A value between 0 and 250]
+Font=[Name of an installed font]
 ```
 
 ### Files and filenames
