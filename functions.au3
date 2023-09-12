@@ -5,7 +5,8 @@
 #AutoIt3Wrapper_UseX64=y
 #EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
 
-# Changelog v0.2.3
+# Changelog v0.3.0
+# Added: possibility to delete or archive old notes
 
 # Changelog v0.2.2
 # Removed logging option

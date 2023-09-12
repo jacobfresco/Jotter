@@ -3,9 +3,10 @@ A small note taking app for anyone to use as they see fit. It autosaves every 45
 
 ## Changelog
 
-### Release 0.2.3
+### Release 0.3.0
 
 * Current developement release
+* Added option to delete or archive old notes
 
 ### Release 0.2.2
 
