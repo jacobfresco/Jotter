@@ -38,14 +38,11 @@
 # Creeer het form
 
 # Creeer global vars
-
+Global $assets = @ScriptDir & "\assets\"
 Global $ui_width = 826
 Global $ui_height = 474
-
 Global $left_margin = 20
 Global $top_margin = 20
-
-# Global $cUI = 0xFFFFFF, $cContent = 0xEEEEEE, $cSearch = 0x6A1B9A ;colors
 
 Func _CreateUX($Darkmode, $FontName)
 	#Region
@@ -62,13 +59,17 @@ Func _CreateUX($Darkmode, $FontName)
 			GUICtrlSetColor($frmMain, 0x000000)
 		EndIf
 
-		$FormIcon = GUICtrlCreateIcon("jotter.ico", Default, 3, 2, 16, 16)
+		$FormIcon = GUICtrlCreateIcon($assets & "jotter.ico", Default, 3, 2, 16, 16)
 
-		$FormTitle = GUICtrlCreateLabel(_SetFormTitle("ON", "ON", $RemindersTitle), 22, 2, $ui_width-3, 25,-1,$GUI_WS_EX_PARENTDRAG )
+		$FormTitle = GUICtrlCreateLabel(_SetFormTitle("ON", "ON", $RemindersTitle), 22, 2, $ui_width-30, 25,-1,$GUI_WS_EX_PARENTDRAG )
 		GUICtrlSetFont(-1, 10, 500, Default, $Fontname, 5)
 		if $Darkmode = "true" then
 			GUICtrlSetColor($FormTitle, 0xFFFFFF)
 		Endif
+
+	    Global $btnClose = GUICtrlCreateButton("", $ui_width-21, 2, 20, 20, BitOR($BS_ICON,$BS_FLAT,$BS_VCENTER))
+		GUICtrlSetImage($btnClose, $assets & "close.ico")
+
 
 		$NotesList = GUICtrlCreateCombo("", 4, 25, 300, 29, BitOR($CBS_DROPDOWNLIST,$CBS_AUTOHSCROLL))
 		GUICtrlSetFont(-1, 10, 500, Default, $Fontname, 5)
@@ -77,6 +78,13 @@ Func _CreateUX($Darkmode, $FontName)
 			GUICtrlSetBkColor($NotesList, 0x000000)
 		EndIf
 		GUICtrlSendMsg($NotesList, $CB_SETMINVISIBLE, 10, 0)
+
+		Global $btnArchive = GUICtrlCreateButton("", 308, 29, 16,16, BitOR($BS_ICON,$BS_FLAT,$BS_VCENTER))
+		GUICtrlSetImage($btnArchive, $assets & "archive.ico")
+
+		# Global $btnDelete = GUICtrlCreateIcon($assets & "delete.ico", Default, 332, 29, 16, 16)
+		Global $btnDelete = GUICtrlCreateButton("", 332, 29, 16,16, BitOR($BS_ICON,$BS_FLAT,$BS_VCENTER))
+		GUICtrlSetImage($btnDelete, $assets & "delete.ico")
 
 		$Notitie = GUICtrlCreateEdit("", 4, 52, $ui_width-8, $ui_height-56, BitOR($ES_AUTOVSCROLL,$ES_WANTRETURN,$WS_VSCROLL,$WS_EX_WINDOWEDGE))
 		GUICtrlSetFont(-1, 11, 500, Default, $Fontname, 5)

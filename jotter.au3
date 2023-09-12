@@ -5,9 +5,9 @@
 #AutoIt3Wrapper_Compression=4
 #AutoIt3Wrapper_Compile_Both=y
 #AutoIt3Wrapper_Res_Description=Jotter
-#AutoIt3Wrapper_Res_Fileversion=0.3.0
+#AutoIt3Wrapper_Res_Fileversion=0.2.2
 #AutoIt3Wrapper_Res_ProductName=Jotter
-#AutoIt3Wrapper_Res_ProductVersion=0.3.0
+#AutoIt3Wrapper_Res_ProductVersion=0.2.2
 #EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
 # Version of Jotter
 $JotterVersion = "0.3.0"
@@ -51,8 +51,10 @@ $JotterVersion = "0.3.0"
 #include <ComboConstants.au3>
 #include <EditConstants.au3>
 #include <GUIConstantsEx.au3>
+#include <ButtonConstants.au3>
 #include <GuiRichEdit.au3>
 #include <GUIConstantsEx.au3>
+#include <GuiButton.au3>
 #include <WindowsConstants.au3>
 #include <Date.au3>
 #include <MsgBoxConstants.au3>
@@ -152,7 +154,7 @@ Endif
 While 1
 	$nMsg = GUIGetMsg()
 	Switch $nMsg
-		Case $GUI_EVENT_CLOSE
+		Case $GUI_EVENT_CLOSE, $btnClose
 			If $NoEmptySave = "true" Then
 				_FileCheckOnExit(GUICtrlRead($Notitie), $SavePath & "\" & $TodayFile)
 			EndIf
