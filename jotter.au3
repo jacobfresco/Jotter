@@ -5,16 +5,16 @@
 #AutoIt3Wrapper_Compression=4
 #AutoIt3Wrapper_Compile_Both=y
 #AutoIt3Wrapper_Res_Description=Jotter
-#AutoIt3Wrapper_Res_Fileversion=0.2.3
+#AutoIt3Wrapper_Res_Fileversion=0.3.0
 #AutoIt3Wrapper_Res_ProductName=Jotter
-#AutoIt3Wrapper_Res_ProductVersion=0.2.3
+#AutoIt3Wrapper_Res_ProductVersion=0.3.0
 #EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
-
 # Version of Jotter
-$JotterVersion = "0.2.3"
+$JotterVersion = "0.3.0"
 
 # Changelog v0.3.0
 # Added: possibility to delete or archive old notes
+# Added: Modern UI
 
 
 # Changelog v0.2.2
@@ -70,13 +70,14 @@ $JotterVersion = "0.2.3"
 # Dim de te gebruiken variabelen
 Dim $inifile, $Title, $Version, $SavePath, $SaveFilePattern, $EditOldNotes, $NotesList
 Dim $SaveFile, $cachefile, $RemStart, $txtfile, $ReminderTitle, $SavePath, $Notitie
+Dim $frmmain, $FormTitle
 Dim $notificationCounter = 0
 
 Global $frmmain
 
 # Lees de INI file
 Local $iniFile = "jotter.ini"
- 
+
 
 If @error > 0 then
 	MsgBox($MB_SYSTEMMODAL, "Error while reading", "Error reading " & $inifile & ". Press OK to create a default INI-file")
@@ -109,6 +110,7 @@ Global $ReminderTitle = INIRead($inifile, "Reminders", "Title", "Jotter Reminder
 Local $xpos = INIRead($iniFile, "Window", "Xpos", "100")
 Local $ypos = INIRead($iniFile, "Window", "ypos", "100")
 Local $transparancy = INIRead($iniFile, "Window", "Transparancy", "250")
+Local $FontName = INIRead($iniFile, "Window", "Font", "Segoe UI")
 
 
 # Definieer de te gebruiken bestandsnamen
@@ -123,7 +125,7 @@ EndIf
 # Controleer of het bestand voor vandaag al bestaat
 _CheckFileExist($SavePath & "\" & $SaveFile)
 
-_CreateUX($Darkmode)
+_CreateUX($Darkmode, $FontName)
 
 # Stel de fontsize van de Editbox in op de ingestelde grootte
 GUICtrlSetFont($Notitie, $FontSize)
@@ -166,18 +168,21 @@ While 1
 				$SaveFile = $TodayFile
 				AdlibRegister("TimerSaveFile", 45)
 				AdLibRegister("TimerReminderCheck", 490)
-				WinSetTitle($frmmain, "", _SetFormTitle("ON", "ON", $RemindersTitle))
+				# WinSetTitle($frmmain, "", _SetFormTitle("ON", "ON", $RemindersTitle))
+				GUICtrlSetData($FormTitle, _SetFormTitle("ON", "ON", $RemindersTitle))
 			Else
 				_OpenFile($SavePath & "\" & $SelectedFile)
 				If $EditOldNotes = "False" Then
 					GuiCtrlSendMsg($Notitie, $EM_SETREADONLY, 1, 0)
 					$SaveFile = $SelectedFile
-					WinSetTitle($frmmain, "", _SetFormTitle("OFF", "OFF",$RemindersTitle))
+					#WinSetTitle($frmmain, "", _SetFormTitle("OFF", "OFF",$RemindersTitle))
+					GUICtrlSetData($FormTitle, _SetFormTitle("OFF", "OFF",$RemindersTitle))
 				Else
 					GuiCtrlSendMsg($Notitie, $EM_SETREADONLY, 0, 0)
 					$SaveFile = $SelectedFile
 					AdlibRegister("TimerSaveFile", 45)
-					WinSetTitle($frmmain, "", _SetFormTitle("ON", "ON", $RemindersTitle))
+					#WinSetTitle($frmmain, "", _SetFormTitle("ON", "ON", $RemindersTitle))
+					GUICtrlSetData($FormTitle, _SetFormTitle("ON", "ON", $RemindersTitle))
 				EndIf
 			Endif
 

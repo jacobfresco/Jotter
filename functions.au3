@@ -7,6 +7,8 @@
 
 # Changelog v0.3.0
 # Added: possibility to delete or archive old notes
+# Added: Modern UI
+
 
 # Changelog v0.2.2
 # Removed logging option
@@ -43,7 +45,6 @@
 Func _CheckFileExist($FileToCheck)
 
 	# Controleer of het bestand voor vandaag al bestaat. Zo niet, maak het aan.
-	$DefaultTXT = ""
 	If Not FileExists($FileToCheck) Then
 		$hFileOpen = FileOpen($FileToCheck, 2)
 		If @error > 0 then
@@ -53,6 +54,8 @@ Func _CheckFileExist($FileToCheck)
 		If FileExists("default.txt") Then
 			$hdefaultOpen = FileOpen("default.txt", 0)
 			$defaultTXT = FileRead("default.txt")
+		Else
+			$defaultTXT = ""
 		EndIf
 		FileWriteLine($hFileOpen, $defaultTXT)
 		FileClose($hFileOpen)
@@ -133,6 +136,7 @@ EndFunc
 
 
 Func _OpenFile($FileToOpen)
+
 	# Open het bestand en toon de inhoud in de Editbox
 	$hFileOpen = FileOpen($FileToOpen,0)
 	If @error > 0 then
@@ -193,7 +197,7 @@ Func _SaveFile($FileToSave)
 
 	# Sla het bestand op in het aangegeven bestand
 	$NoteToSave = GUICtrlRead($Notitie)
-	
+
 	$hFileOpen = FileOpen($FileToSave, 2)
 	If @error > 0 then
 		MsgBox($MB_SYSTEMMODAL, "Error while saving", "Error saving " & $FileToSave & " in " & $SavePath & ". Exiting...")
