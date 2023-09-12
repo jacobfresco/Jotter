@@ -61,7 +61,7 @@ Func _CreateUX($Darkmode, $FontName)
 
 		$FormIcon = GUICtrlCreateIcon($assets & "jotter.ico", Default, 3, 2, 16, 16)
 
-		$FormTitle = GUICtrlCreateLabel(_SetFormTitle("ON", "ON", $RemindersTitle), 22, 2, $ui_width-30, 25,-1,$GUI_WS_EX_PARENTDRAG )
+		$FormTitle = GUICtrlCreateLabel(_SetFormTitle("ON", "ON", $RemindersTitle), 22, 2, $ui_width-40, 25,-1,$GUI_WS_EX_PARENTDRAG )
 		GUICtrlSetFont(-1, 10, 500, Default, $Fontname, 5)
 		if $Darkmode = "true" then
 			GUICtrlSetColor($FormTitle, 0xFFFFFF)
