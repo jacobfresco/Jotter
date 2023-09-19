@@ -30,13 +30,14 @@ Jotter is compiled as a standalone executable, therefore requiring no installati
 title=Jotter
 
 [system]
-SavePath=[Path where Jotter saves the file(s)]
-ArchivePath=[Path where Jotter archives old notes]
+SavePath=[Path to save the jots]
+ArchivePath=[Path for the archived jots]
+ArchiveNumDays=[Number of days to keep in Jotter (older files will be archived automatically on startup)]
 SingleFile=[true|false]
 SaveFileName=%DD-%MM-%YYYY
 # SaveFileName=singlesave
 EditOldNotes=[true|false]
-FontSize=12
+FontSize=[fontsize for the font within the editbox]
 Darkmode=[true|false]
 NoEmptySave=[true|false]
 
