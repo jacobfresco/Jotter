@@ -36,9 +36,6 @@
 
 # File: ux.au3
 
-# Creeer het form
-
-# Creeer global vars
 Global $assets = @ScriptDir & "\assets\"
 Global $ui_width = 826
 Global $ui_height = 474
@@ -46,52 +43,52 @@ Global $left_margin = 20
 Global $top_margin = 20
 
 Func _CreateUX($Darkmode, $FontName)
-	#Region
-		Opt("GUICoordMode", 1)
-		$frmmain = GUICreate("", $ui_width, $ui_height, $xpos, $ypos, $WS_POPUP, $WS_EX_CONTROLPARENT)
+	
+	Opt("GUICoordMode", 1)
+	$frmmain = GUICreate("", $ui_width, $ui_height, $xpos, $ypos, $WS_POPUP, $WS_EX_CONTROLPARENT)
 
-		GUICtrlSetFont(-1, 10, 500, Default, $Fontname, 5)
-		WinSetTrans($frmmain, "", $transparancy)
-		if $Darkmode = "true" then
-			GUISetBkColor(0x000000, $frmMain)
-			GUICtrlSetColor($frmMain, 0xFFFFFF)
-		Else
-			GUISetBkColor(0xFFFFFF, $frmMain)
-			GUICtrlSetColor($frmMain, 0x000000)
-		EndIf
+	GUICtrlSetFont(-1, 10, 500, Default, $Fontname, 5)
+	WinSetTrans($frmmain, "", $transparancy)
+	if $Darkmode = "true" then
+		GUISetBkColor(0x000000, $frmMain)
+		GUICtrlSetColor($frmMain, 0xFFFFFF)
+	Else
+		GUISetBkColor(0xFFFFFF, $frmMain)
+		GUICtrlSetColor($frmMain, 0x000000)
+	EndIf
 
-		$FormIcon = GUICtrlCreateIcon($assets & "jotter.ico", Default, 3, 2, 16, 16)
+	$FormIcon = GUICtrlCreateIcon($assets & "jotter.ico", Default, 3, 2, 16, 16)
 
-		Global $FormTitle = GUICtrlCreateLabel(_SetFormTitle("ON", "ON", $RemindersTitle), 22, 2, $ui_width-40, 25,-1,$GUI_WS_EX_PARENTDRAG )
-		GUICtrlSetFont(-1, 10, 500, Default, $Fontname, 5)
-		if $Darkmode = "true" then
-			GUICtrlSetColor($FormTitle, 0xFFFFFF)
-		Endif
+	Global $FormTitle = GUICtrlCreateLabel(_SetFormTitle("ON", "ON", $RemindersTitle), 22, 2, $ui_width-40, 25,-1,$GUI_WS_EX_PARENTDRAG )
+	GUICtrlSetFont(-1, 10, 500, Default, $Fontname, 5)
+	if $Darkmode = "true" then
+		GUICtrlSetColor($FormTitle, 0xFFFFFF)
+	Endif
 
-	    Global $btnClose = GUICtrlCreateButton("", $ui_width-21, 2, 20, 20, BitOR($BS_ICON,$BS_FLAT,$BS_VCENTER))
-		GUICtrlSetImage($btnClose, $assets & "close.ico")
+	Global $btnClose = GUICtrlCreateButton("", $ui_width-21, 2, 20, 20, BitOR($BS_ICON,$BS_FLAT,$BS_VCENTER))
+	GUICtrlSetImage($btnClose, $assets & "close.ico")
 
 
-		$NotesList = GUICtrlCreateCombo("", 4, 25, 300, 29, BitOR($CBS_DROPDOWNLIST,$CBS_AUTOHSCROLL))
-		GUICtrlSetFont(-1, 10, 500, Default, $Fontname, 5)
-		if $Darkmode = "true" then
-			GUICtrlSetColor($NotesList, 0xFFFFFF)
-			GUICtrlSetBkColor($NotesList, 0x000000)
-		EndIf
-		GUICtrlSendMsg($NotesList, $CB_SETMINVISIBLE, 10, 0)
+	$NotesList = GUICtrlCreateCombo("", 4, 25, 300, 29, BitOR($CBS_DROPDOWNLIST,$CBS_AUTOHSCROLL))
+	GUICtrlSetFont(-1, 10, 500, Default, $Fontname, 5)
+	if $Darkmode = "true" then
+		GUICtrlSetColor($NotesList, 0xFFFFFF)
+		GUICtrlSetBkColor($NotesList, 0x000000)
+	EndIf
+	GUICtrlSendMsg($NotesList, $CB_SETMINVISIBLE, 10, 0)
 
-		Global $btnArchive = GUICtrlCreateButton("", 308, 29, 16,16, BitOR($BS_ICON,$BS_FLAT,$BS_VCENTER))
-		GUICtrlSetImage($btnArchive, $assets & "archive.ico")
+	Global $btnArchive = GUICtrlCreateButton("", 308, 29, 16,16, BitOR($BS_ICON,$BS_FLAT,$BS_VCENTER))
+	GUICtrlSetImage($btnArchive, $assets & "archive.ico")
 
-		Global $btnDelete = GUICtrlCreateButton("", 332, 29, 16,16, BitOR($BS_ICON,$BS_FLAT,$BS_VCENTER))
-		GUICtrlSetImage($btnDelete, $assets & "delete.ico")
+	Global $btnDelete = GUICtrlCreateButton("", 332, 29, 16,16, BitOR($BS_ICON,$BS_FLAT,$BS_VCENTER))
+	GUICtrlSetImage($btnDelete, $assets & "delete.ico")
 
-		$Notitie = GUICtrlCreateEdit("", 4, 52, $ui_width-8, $ui_height-56, BitOR($ES_AUTOVSCROLL,$ES_WANTRETURN,$WS_VSCROLL,$WS_EX_WINDOWEDGE))
-		GUICtrlSetFont(-1, 11, 500, Default, $Fontname, 5)
-		if $Darkmode = "true" then
-			GUICtrlSetColor($Notitie, 0xFFFFFF)
-			GUICtrlSetBkColor($Notitie, 0x000000)
-		EndIf
-		GUISetState(@SW_SHOW)
-	#EndRegion
+	$Notitie = GUICtrlCreateEdit("", 4, 52, $ui_width-8, $ui_height-56, BitOR($ES_AUTOVSCROLL,$ES_WANTRETURN,$WS_VSCROLL,$WS_EX_WINDOWEDGE))
+	GUICtrlSetFont(-1, 11, 500, Default, $Fontname, 5)
+	if $Darkmode = "true" then
+		GUICtrlSetColor($Notitie, 0xFFFFFF)
+		GUICtrlSetBkColor($Notitie, 0x000000)
+	EndIf
+	GUISetState(@SW_SHOW)
+
 EndFunc
