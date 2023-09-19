@@ -8,6 +8,7 @@ A small note taking app for anyone to use as they see fit. It autosaves every 45
 * Current developement release
 * Added option to delete or archive old notes
 * Modern UI
+* Added: automatically archive jots after older then a specific number of days
 
 ### Release 0.2.2
 

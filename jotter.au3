@@ -15,6 +15,7 @@ $JotterVersion = "0.3.0"
 # Changelog v0.3.0
 # Added: possibility to delete or archive old notes
 # Added: Modern UI
+# Added: automatically archive jots after older then a specific number of days
 
 
 # Changelog v0.2.2
@@ -90,7 +91,7 @@ Local $Title = INiRead($iniFile, "Main", "Title", "Jotter")
 Local $Version = $JotterVersion
 
 Local $SavePath = INiRead($iniFile, "system", "SavePath", EnvGet("USERPROFILE") & "\documents\jotter")
-
+Local $ArchivePath = IniRead($inifile, "system", "ArchivePath", EnvGet("USERPROFILE") & "\documents\jotter\Archive")
 Local $SaveFilePattern = INiRead($iniFile, "system", "SaveFileName", "%DD-%MM-%YYYY")
 Local $SingleFile = INiRead($iniFile, "system", "SingleFile", "false")
 Local $EditOldNotes = INiRead($iniFile, "system", "EditOldNotes", "False")
@@ -107,7 +108,6 @@ EndIf
 
 Local $ReminderStart = INIRead($inifile, "Reminders", "Tag", "[@]")
 Global $ReminderTitle = INIRead($inifile, "Reminders", "Title", "Jotter Reminder!")
-
 
 Local $xpos = INIRead($iniFile, "Window", "Xpos", "100")
 Local $ypos = INIRead($iniFile, "Window", "ypos", "100")
@@ -127,6 +127,7 @@ EndIf
 # Controleer of het bestand voor vandaag al bestaat
 _CheckFileExist($SavePath & "\" & $SaveFile)
 
+# Bouw de interface op
 _CreateUX($Darkmode, $FontName)
 
 # Stel de fontsize van de Editbox in op de ingestelde grootte
@@ -142,6 +143,10 @@ EndIf
 
 # Open het bestand van vandaag en toon de inhoud
 _OpenFile($SavePath & "\" & $SaveFile)
+
+# Disable de knoppen voor Archive en Delete op de file van vandaag
+GuiCtrlSendMsg($btnArchive, $EM_SETREADONLY, 1, 0)
+GuiCtrlSendMsg($btnDelete, $EM_SETREADONLY, 1, 0)
 
 # Stel de timer in voor autosave
 AdlibRegister("TimerSaveFile", 45)
@@ -164,29 +169,38 @@ While 1
 			$SelectedFile = GUICtrlRead($NotesList)
 			AdlibUnRegister("TimerSaveFile")
 			AdLibUnRegister("TimerReminderCheck")
+			# ConsoleWrite("Today's file: " & $TodayFile & chr(10) & "Selected file: " & $SelectedFile & chr(10) & chr(10))
 			If $SelectedFile = $TodayFile Then
 				_OpenFile($SavePath & "\" & $TodayFile)
 				GuiCtrlSendMsg($Notitie, $EM_SETREADONLY, 0, 0)
 				$SaveFile = $TodayFile
 				AdlibRegister("TimerSaveFile", 45)
 				AdLibRegister("TimerReminderCheck", 490)
-				# WinSetTitle($frmmain, "", _SetFormTitle("ON", "ON", $RemindersTitle))
+				# ConsoleWrite("Hit the right function (if then else)")
 				GUICtrlSetData($FormTitle, _SetFormTitle("ON", "ON", $RemindersTitle))
+				GuiCtrlSendMsg($btnArchive, $EM_SETREADONLY, 1, 0)
+				GuiCtrlSendMsg($btnDelete, $EM_SETREADONLY, 1, 0)
 			Else
 				_OpenFile($SavePath & "\" & $SelectedFile)
+				GuiCtrlSendMsg($btnArchive, $EM_SETREADONLY, 0, 0)
+				GuiCtrlSendMsg($btnDelete, $EM_SETREADONLY, 0, 0)
 				If $EditOldNotes = "False" Then
 					GuiCtrlSendMsg($Notitie, $EM_SETREADONLY, 1, 0)
 					$SaveFile = $SelectedFile
-					#WinSetTitle($frmmain, "", _SetFormTitle("OFF", "OFF",$RemindersTitle))
 					GUICtrlSetData($FormTitle, _SetFormTitle("OFF", "OFF",$RemindersTitle))
 				Else
 					GuiCtrlSendMsg($Notitie, $EM_SETREADONLY, 0, 0)
+
 					$SaveFile = $SelectedFile
 					AdlibRegister("TimerSaveFile", 45)
-					#WinSetTitle($frmmain, "", _SetFormTitle("ON", "ON", $RemindersTitle))
 					GUICtrlSetData($FormTitle, _SetFormTitle("ON", "ON", $RemindersTitle))
 				EndIf
 			Endif
+
+		case $btnDelete
+			$SelectedFile = GUICtrlRead($NotesList)
+			AdlibUnRegister("TimerSaveFile")
+			AdLibUnRegister("TimerReminderCheck")
 
 	EndSwitch
 

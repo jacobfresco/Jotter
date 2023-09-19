@@ -1,6 +1,7 @@
 # Changelog v0.3.0
 # Added: possibility to delete or archive old notes
 # Added: Modern UI
+# Added: automatically archive jots after older then a specific number of days
 
 
 # Changelog v0.2.2
@@ -46,7 +47,7 @@ Global $top_margin = 20
 
 Func _CreateUX($Darkmode, $FontName)
 	#Region
-		# Opt("GUICoordMode", 1)
+		Opt("GUICoordMode", 1)
 		$frmmain = GUICreate("", $ui_width, $ui_height, $xpos, $ypos, $WS_POPUP, $WS_EX_CONTROLPARENT)
 
 		GUICtrlSetFont(-1, 10, 500, Default, $Fontname, 5)
@@ -61,7 +62,7 @@ Func _CreateUX($Darkmode, $FontName)
 
 		$FormIcon = GUICtrlCreateIcon($assets & "jotter.ico", Default, 3, 2, 16, 16)
 
-		$FormTitle = GUICtrlCreateLabel(_SetFormTitle("ON", "ON", $RemindersTitle), 22, 2, $ui_width-40, 25,-1,$GUI_WS_EX_PARENTDRAG )
+		Global $FormTitle = GUICtrlCreateLabel(_SetFormTitle("ON", "ON", $RemindersTitle), 22, 2, $ui_width-40, 25,-1,$GUI_WS_EX_PARENTDRAG )
 		GUICtrlSetFont(-1, 10, 500, Default, $Fontname, 5)
 		if $Darkmode = "true" then
 			GUICtrlSetColor($FormTitle, 0xFFFFFF)
@@ -82,7 +83,6 @@ Func _CreateUX($Darkmode, $FontName)
 		Global $btnArchive = GUICtrlCreateButton("", 308, 29, 16,16, BitOR($BS_ICON,$BS_FLAT,$BS_VCENTER))
 		GUICtrlSetImage($btnArchive, $assets & "archive.ico")
 
-		# Global $btnDelete = GUICtrlCreateIcon($assets & "delete.ico", Default, 332, 29, 16, 16)
 		Global $btnDelete = GUICtrlCreateButton("", 332, 29, 16,16, BitOR($BS_ICON,$BS_FLAT,$BS_VCENTER))
 		GUICtrlSetImage($btnDelete, $assets & "delete.ico")
 
