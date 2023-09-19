@@ -5,10 +5,11 @@
 #AutoIt3Wrapper_Compression=4
 #AutoIt3Wrapper_Compile_Both=y
 #AutoIt3Wrapper_Res_Description=Jotter
-#AutoIt3Wrapper_Res_Fileversion=0.2.2
+#AutoIt3Wrapper_Res_Fileversion=0.3.0
 #AutoIt3Wrapper_Res_ProductName=Jotter
-#AutoIt3Wrapper_Res_ProductVersion=0.2.2
+#AutoIt3Wrapper_Res_ProductVersion=0.3.0
 #EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
+
 # Version of Jotter
 $JotterVersion = "0.3.0"
 

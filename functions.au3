@@ -42,10 +42,18 @@
 
 # File: functions.au3
 
+Func _ArchiveOnStart($PathToLook, $NumDays, $ArchivePath)
+
+	# NL: Archiveer automatisch alle bestanden ouder dan het opgegeven aantal dagen
+	# EN: Automatically archive files older then the given number of days 
+
+EndFunc
 
 Func _CheckFileExist($FileToCheck)
 
-	# Controleer of het bestand voor vandaag al bestaat. Zo niet, maak het aan.
+	# NL: Controleer of het bestand voor vandaag al bestaat. Zo niet, maak het aan.
+	# EN: Check if the file for today already exists. If not, creat it.
+
 	If Not FileExists($FileToCheck) Then
 		$hFileOpen = FileOpen($FileToCheck, 2)
 		If @error > 0 then
@@ -66,6 +74,10 @@ EndFunc
 
 
 Func _CheckForReminders($RemStart, $txtfile)
+
+	# NL: Controleert of er nog niet verwerkte reminders in de tekst staan.
+	# EN: Checks if there are active reminders within the text 
+
 	AdlibUnRegister("TimerSaveFile")
 	$CheckForReminders = FileOpen($txtfile, $FO_READ)
 	$NewTxt = ""
@@ -101,7 +113,9 @@ EndFunc
 
 Func _ConvertFileName($Pattern)
 
-	# Bepaal de bestandsnaam voor vandaag op basis van het %Pattern% uit de INI-file
+	# NL: Bepaal de bestandsnaam voor vandaag op basis van het %Pattern% uit de INI-file
+	# EN: Determine the filename for today based on the %Pattern% from in the INI-File 
+
 	Local $dag, $tijd
 
 	Local $datum = _DateTimeSplit(_DateTimeFormat(_NowCalc(), 2), $dag, $tijd)
@@ -125,6 +139,10 @@ Func _ConvertFileName($Pattern)
 EndFunc
 
 Func _FileCheckOnExit($Content, $TodayFileVar)
+
+	# NL: Als de jot leeg is, verwijder het bestand bij afsluiten (optie in the INI)
+	# EN: If the jot is empty, delete the corresponding file on exit (option in the INI)
+
 	If $Content = "" Then
 		FileDelete($TodayFileVar)
 	EndIf
@@ -132,13 +150,19 @@ Func _FileCheckOnExit($Content, $TodayFileVar)
 EndFunc
 
 Func _GetFileLastModifiedDate($sFilename)
+
+	# NL: Bepaalt de Laatst aangepast datum van een bestand 
+	# EN: Determines the last modified date of a file
+
 	Return Number(FileGetTime($SavePath & "\" & $sFilename, 0, 1))
 EndFunc
 
 
 Func _OpenFile($FileToOpen)
 
-	# Open het bestand en toon de inhoud in de Editbox
+	# NL: Open het bestand en toon de inhoud in de Editbox
+	# EN: Open the file and show the content within the Editbox 
+
 	$hFileOpen = FileOpen($FileToOpen,0)
 	If @error > 0 then
 		MsgBox($MB_SYSTEMMODAL, "Error while opening ", "Error opening " & $FileToOpen & " in " & $SavePath & ". Exiting...")
@@ -155,6 +179,9 @@ EndFunc
 
 
 Func _PopulateListBox($PathToLook)
+
+	# NL: Vult de dropdownbox (gebruikt hierbij ook _Sort())
+	# EN: Populates the dropdown (uses _Sort())
 
 	Local $aFileList = _FileListToArray($PathToLook, "*.txt",0,0)
 	If @error = 1 Then
@@ -181,6 +208,10 @@ EndFunc
 
 
 Func _Sort(ByRef $aArray)
+
+	# NL: Sorteert de bestanden op Laatst aangepast in de dropdown (gebruikt _GetFileLastModifiedDate())
+	# EN: Sorts the files based on Last Modified Date in the dropdown (uses _GetFileLastModifiedDate())
+
     For $i = UBound($aArray) - 1 To 1 Step -1
         For $j = 1 To $i
 			If _GetFileLastModifiedDate($aArray[$j - 1]) >_GetFileLastModifiedDate($aArray[$j]) Then
@@ -196,7 +227,9 @@ EndFunc
 
 Func _SaveFile($FileToSave)
 
-	# Sla het bestand op in het aangegeven bestand
+	# NL: Sla het bestand op in het aangegeven bestand
+	# EN: Save the file in the given filename
+
 	$NoteToSave = GUICtrlRead($Notitie)
 
 	$hFileOpen = FileOpen($FileToSave, 2)
@@ -214,6 +247,11 @@ EndFunc
 
 Func _SetFormTitle($Edit, $AutoSave, $Reminders)
 
+	# NL: Bepaal de titel van het window en maak deze actief 
+	# EN: Determine the window title and set it
+	# DEBUG: not working after the second change in the dropdown box 
+	# Issue: https://github.com/jacobfresco/jotter/issues/1
+
 	$formTitle = $Title & " " & $Version & " | " & $SaveFile
 	if $Singlefile = "false" Then
 		$formTitle = $formTitle & " | Edit " & $Edit & " | Autosave " & $AutoSave & " | Reminders " & $Reminders
@@ -226,13 +264,17 @@ Func _SetFormTitle($Edit, $AutoSave, $Reminders)
 EndFunc
 
 Func TimerSaveFile()
-	# Kapstokfunctie voor het automatisch saven van de notitie met AdlibRegister
+	# NL: Kapstokfunctie voor het automatisch saven van de notitie met AdlibRegister
+	# EN: Helicopter function for automatically saving notes with AdlibRegister
+
 	_SaveFile($SavePath & "\" & $SaveFile)
 EndFunc
 
 
 Func TimerReminderCheck()
-	# Kapstopfunctie voor het automatisch starten van de Check op reminders
+	# NL: Kapstopfunctie voor het automatisch starten van de Check op reminders
+	# EN: Helicopterfunction for automatically starting the check for reminders 
+
 	_CheckForReminders($ReminderStart, $SavePath & "\" & $SaveFile)
 EndFunc
 
