@@ -11,7 +11,7 @@
 #EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
 
 # Version of Jotter
-$JotterVersion = "0.3.0"
+Global $JotterVersion = "0.3.0"
 
 # Changelog v0.3.0
 # Added: possibility to delete or archive old notes
@@ -71,17 +71,20 @@ $JotterVersion = "0.3.0"
 #include <FileConstants.au3>
 #include <ux.au3>
 
-# Dim de te gebruiken variabelen
+# NL: Creeer de variabelen voor eerste gebruik
+# EN: Create variables for first use
+
 Dim $inifile, $Title, $Version, $SavePath, $SaveFilePattern, $EditOldNotes, $NotesList
-Dim $SaveFile, $cachefile, $RemStart, $txtfile, $ReminderTitle, $SavePath, $Notitie
-Dim $frmmain, $FormTitle
+Dim $SaveFile, $cachefile, $RemStart, $txtfile, $RemindersTitle, $SavePath, $Notitie
+Dim $frmmain, $FormTitlem, $SingleFile, $ReminderStart, $xpos, $ypos, $transparancy, $ReminderTitle
+
 Dim $notificationCounter = 0
 
 Global $frmmain
 
-# Lees de INI file
+# NL: Lees de INI file
+# EN: Parse the INI file
 Local $iniFile = "jotter.ini"
-
 
 If @error > 0 then
 	MsgBox($MB_SYSTEMMODAL, "Error while reading", "Error reading " & $inifile & ". Press OK to create a default INI-file")

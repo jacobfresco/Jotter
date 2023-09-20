@@ -1,9 +1,9 @@
-#Region ;**** Directives created by AutoIt3Wrapper_GUI ****
+#Region 
 	#AutoIt3Wrapper_Icon=jotter.ico
 	#AutoIt3Wrapper_Outfile_x64=jotter_64.exe
 	#AutoIt3Wrapper_Compile_Both=y
 	#AutoIt3Wrapper_UseX64=y
-#EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
+#EndRegion 
 
 # Changelog v0.3.0
 # Added: possibility to delete or archive old notes
@@ -41,6 +41,13 @@
 # First release
 
 # File: functions.au3
+
+# NL: Creeer de variabelen voor eerste gebruik
+# EN: Create variables for first use
+
+Dim $inifile, $Title, $Version, $SavePath, $SaveFilePattern, $EditOldNotes, $NotesList
+Dim $SaveFile, $cachefile, $RemStart, $txtfile, $RemindersTitle, $SavePath, $Notitie
+Dim $frmmain, $FormTitlem, $SingleFile, $ReminderStart, $xpos, $ypos, $transparancy, $ReminderTitle
 
 Func _ArchiveOnStart($PathToLook, $NumDays, $ArchivePath)
 

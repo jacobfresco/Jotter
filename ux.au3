@@ -15,7 +15,6 @@
 # Added transparancy option via .ini
 
 
-
 # Changelog v0.2.1
 # Sort dropdown selectbox by date (last modified)
 # New config for versioning
@@ -36,13 +35,19 @@
 
 # File: ux.au3
 
+# NL: Creeer variabelen voor eerste gebruik
+# EN: Create variables for first use
+
 Global $assets = @ScriptDir & "\assets\"
 Global $ui_width = 826
 Global $ui_height = 474
-Global $left_margin = 20
-Global $top_margin = 20
 
 Func _CreateUX($Darkmode, $FontName)
+
+	# NL: Creeer de Jotter GUI
+	# EN: Create the Jotter GUI
+
+	# Dimensions: 826x474px
 	
 	Opt("GUICoordMode", 1)
 	$frmmain = GUICreate("", $ui_width, $ui_height, $xpos, $ypos, $WS_POPUP, $WS_EX_CONTROLPARENT)
