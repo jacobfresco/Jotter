@@ -1,8 +1,8 @@
 #Region ;**** Directives created by AutoIt3Wrapper_GUI ****
-#AutoIt3Wrapper_Icon=jotter.ico
-#AutoIt3Wrapper_Outfile_x64=jotter_64.exe
-#AutoIt3Wrapper_Compile_Both=y
-#AutoIt3Wrapper_UseX64=y
+	#AutoIt3Wrapper_Icon=jotter.ico
+	#AutoIt3Wrapper_Outfile_x64=jotter_64.exe
+	#AutoIt3Wrapper_Compile_Both=y
+	#AutoIt3Wrapper_UseX64=y
 #EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
 
 # Changelog v0.3.0
