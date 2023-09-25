@@ -32,6 +32,7 @@ title=Jotter
 [system]
 SavePath=[Path to save the jots]
 ArchivePath=[Path for the archived jots]
+AutoArchive=[true|false]
 ArchiveNumDays=[Number of days to keep in Jotter (older files will be archived automatically on startup)]
 SingleFile=[true|false]
 SaveFileName=%DD-%MM-%YYYY
