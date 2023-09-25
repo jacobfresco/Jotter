@@ -49,10 +49,10 @@ Dim $inifile, $Title, $Version, $SavePath, $SaveFilePattern, $EditOldNotes, $Not
 Dim $SaveFile, $cachefile, $RemStart, $txtfile, $RemindersTitle, $SavePath, $Notitie
 Dim $frmmain, $FormTitlem, $SingleFile, $ReminderStart, $xpos, $ypos, $transparancy, $ReminderTitle
 
-Func _ArchiveOnStart($PathToLook, $NumDays, $ArchivePath)
+Func _ArchiveJot($PathToLook, $FileToArchive, $ArchivePath)
 
-	# NL: Archiveer automatisch alle bestanden ouder dan het opgegeven aantal dagen
-	# EN: Automatically archive files older then the given number of days 
+	# NL: Archiveer $FileToArchive vanuit $PathToLook naar $ArchivePath
+	# EN: Archive $FileToArchive from $PathToLook to $ArchivePath
 
 EndFunc
 
@@ -162,6 +162,7 @@ Func _GetFileLastModifiedDate($sFilename)
 	# EN: Determines the last modified date of a file
 
 	Return Number(FileGetTime($SavePath & "\" & $sFilename, 0, 1))
+	
 EndFunc
 
 
