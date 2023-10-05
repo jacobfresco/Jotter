@@ -276,17 +276,16 @@ Func _SetFormTitle($Edit, $AutoSave, $Reminders)
 
 	# NL: Bepaal de titel van het window en maak deze actief 
 	# EN: Determine the window title and set it
-	# DEBUG: not working after the second change in the dropdown box 
-	# Issue: https://github.com/jacobfresco/jotter/issues/1
-
-	$formTitle = $Title & " " & $Version & " | " & $SaveFile
+	
+	$tempTitle = ""
+	$tempTitle = $Title & " " & $Version & " | " & $SaveFile
 	if $Singlefile = "false" Then
-		$formTitle = $formTitle & " | Edit " & $Edit & " | Autosave " & $AutoSave & " | Reminders " & $Reminders
+		$tempTitle = $tempTitle & " | Edit " & $Edit & " | Autosave " & $AutoSave & " | Reminders " & $Reminders
 	Else
-		$formTitle = $formTitle & " | Mode: Single File" & " | Reminders " & $Reminders
+		$tempTitle = $tempTitle & " | Mode: Single File" & " | Reminders " & $Reminders
 	EndIf
 
-	Return $formTitle
+	Return $tempTitle
 
 EndFunc
 
