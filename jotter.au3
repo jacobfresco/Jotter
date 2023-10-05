@@ -182,6 +182,11 @@ Endif
 GUIRegisterMsg($WM_MOUSEWHEEL, "_ScrollZoom")
 $n = $FontSize
 
+# NL: Disable de knoppen voor Archiveren en Verwijderen
+# EN: Disable the buttons for Archive and Delete
+GuiCtrlSendMsg($btnArchive, $EM_SETREADONLY, 1, 0)
+GuiCtrlSendMsg($btnDelete, $EM_SETREADONLY, 1, 0)
+
 While 1
 	$nMsg = GUIGetMsg()
 	Switch $nMsg
@@ -216,7 +221,6 @@ While 1
 					GUICtrlSetData($FormTitle, _SetFormTitle("OFF", "OFF",$RemindersTitle))
 				Else
 					GuiCtrlSendMsg($Notitie, $EM_SETREADONLY, 0, 0)
-
 					$SaveFile = $SelectedFile
 					AdlibRegister("TimerSaveFile", 45)
 					GUICtrlSetData($FormTitle, _SetFormTitle("ON", "ON", $RemindersTitle))
