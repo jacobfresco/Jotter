@@ -58,6 +58,17 @@ Func _ArchiveJot($PathToLook, $FileToArchive, $ArchivePath)
 
 EndFunc
 
+
+Func _ArchiveViaButton($FileToArchive)
+	MsgBox($MB_SYSTEMMODAL, "Archive", "File:" & $FileToArchive)
+EndFunc
+
+
+Func _DeleteViaButton()
+
+EndFunc
+
+
 Func _CheckFileExist($FileToCheck)
 
 	# NL: Controleer of het bestand voor vandaag al bestaat. Zo niet, maak het aan.

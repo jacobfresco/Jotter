@@ -80,7 +80,7 @@ Global $JotterVersion = "0.3.0"
 Dim $inifile, $Title, $Version, $SavePath, $SaveFilePattern, $EditOldNotes, $NotesList
 Dim $SaveFile, $cachefile, $RemStart, $txtfile, $RemindersTitle, $SavePath, $Notitie
 Dim $frmmain, $FormTitlem, $SingleFile, $ReminderStart, $xpos, $ypos, $transparancy, $ReminderTitle
-Dim $bgColor, $txtColor 
+Dim $bgColor, $txtColor, $FontName, $n
 
 Dim $notificationCounter = 0
 
@@ -184,8 +184,8 @@ $n = $FontSize
 
 # NL: Disable de knoppen voor Archiveren en Verwijderen
 # EN: Disable the buttons for Archive and Delete
-GuiCtrlSendMsg($btnArchive, $EM_SETREADONLY, 1, 0)
-GuiCtrlSendMsg($btnDelete, $EM_SETREADONLY, 1, 0)
+GUICtrlSetState($btnArchive, $GUI_DISABLE)
+GUICtrlSetState($btnDelete, $GUI_DISABLE)
 
 While 1
 	$nMsg = GUIGetMsg()
@@ -209,12 +209,12 @@ While 1
 				AdLibRegister("TimerReminderCheck", 490)
 				# ConsoleWrite("Hit the right function (if then else)")
 				GUICtrlSetData($FormTitle, _SetFormTitle("ON", "ON", $RemindersTitle))
-				GuiCtrlSendMsg($btnArchive, $EM_SETREADONLY, 1, 0)
-				GuiCtrlSendMsg($btnDelete, $EM_SETREADONLY, 1, 0)
+				GUICtrlSetState($btnArchive, $GUI_DISABLE)
+				GUICtrlSetState($btnDelete, $GUI_DISABLE)
 			Else
 				_OpenFile($SavePath & "\" & $SelectedFile)
-				GuiCtrlSendMsg($btnArchive, $EM_SETREADONLY, 0, 0)
-				GuiCtrlSendMsg($btnDelete, $EM_SETREADONLY, 0, 0)
+				GUICtrlSetState($btnArchive, $GUI_ENABLE)
+				GUICtrlSetState($btnDelete, $GUI_ENABLE)
 				If $EditOldNotes = "False" Then
 					GuiCtrlSendMsg($Notitie, $EM_SETREADONLY, 1, 0)
 					$SaveFile = $SelectedFile
@@ -236,6 +236,7 @@ While 1
 			$SelectedFile = GUICtrlRead($NotesList)
 			AdlibUnRegister("TimerSaveFile")
 			AdLibUnRegister("TimerReminderCheck")
+			_ArchiveViaButton($SelectedFile)
 
 	EndSwitch
 
