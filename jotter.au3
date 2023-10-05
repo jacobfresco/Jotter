@@ -17,6 +17,7 @@ Global $JotterVersion = "0.3.0"
 # Added: possibility to delete or archive old notes
 # Added: Modern UI
 # Added: automatically archive jots after older then a specific number of days
+# Added: background color setting
 
 
 # Changelog v0.2.2
