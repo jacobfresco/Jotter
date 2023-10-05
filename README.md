@@ -51,8 +51,8 @@ Title=[The title showing on the reminder]
 [Window]
 Xpos=[A point on the screen]
 Ypos=[Another point on the screen]
-bgColor=[Hexcode for background color, eg. #000000]
-txtColor=[Hexcode for font color, eg. #FFFFFF]
+bgColor=[Hexcode for background color, eg. 0x000000]
+txtColor=[Hexcode for font color, eg. 0xFFFFFF]
 Transparancy=[A value between 0 and 250]
 Font=[Name of an installed font]
 ```
@@ -83,10 +83,10 @@ You can set a reminder using the below syntax on a new line in Jotter
 The reminder will be shown on the time set and show the text after the time. Please note; this is the default syntax. You're able to set a custom tag for reminders. Please see [jotter.ini](https://github.com/jacobfresco/jotter#configuring-jotterini) on how to do so. 
 
 ### bgColor
-Choose a background color for your window. This setting is ignored when Darkmode is active. Format is hexedecimal, i.e. #00000
+Choose a background color for your window. This setting is ignored when Darkmode is active. Format 0x00000
 
 ### txtColor
-Choose a text color for your window. This setting is ignored when Darkmode is active. Format is hexedecimal, i.e. #FFFFFF
+Choose a text color for your window. This setting is ignored when Darkmode is active. Format is 0xFFFFFF
 
 ### Tranparancy
 You can make the Jotter window more or less transparant by setting a value in [jotter.ini](https://github.com/jacobfresco/jotter#configuring-jotterini). The value needs to be between 0 and 250. Please note that setting the value too low (i.e below 150) will result in a nearly invisible window and a unusable app. The recommended value for this setting is 220
