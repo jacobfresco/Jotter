@@ -101,7 +101,7 @@ Local $ArchivePath = IniRead($inifile, "system", "ArchivePath", EnvGet("USERPROF
 Local $SaveFilePattern = INiRead($iniFile, "system", "SaveFileName", "%DD-%MM-%YYYY")
 Local $SingleFile = INiRead($iniFile, "system", "SingleFile", "false")
 Local $EditOldNotes = INiRead($iniFile, "system", "EditOldNotes", "False")
-Local $FontSize = INIRead($iniFile, "system", "FontSize", "10")
+
 Local $Darkmode = INIRead($iniFile, "system", "Darkmode", "false")
 Local $NoEmptySave = INIRead($iniFile, "system", "NoEmptySave", "false")
 
@@ -121,7 +121,7 @@ Local $transparancy = INIRead($iniFile, "Window", "Transparancy", "250")
 Local $bgColor = INIRead($iniFile, "Window", "bgColor", "#FFFFFF")
 Local $txtColor = INIRead($iniFile, "Window", "txtColor", "#000000")
 Local $FontName = INIRead($iniFile, "Window", "Font", "Segoe UI")
-
+Local $FontSize = INIRead($iniFile, "Window", "FontSize", "10")
 
 # Definieer de te gebruiken bestandsnamen
 if $Singlefile = "false" then
