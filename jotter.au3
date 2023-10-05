@@ -133,16 +133,23 @@ Else
 	$SaveFile = $SaveFilePattern & ".TXT"
 EndIf
 
-# Controleer of het bestand voor vandaag al bestaat
+# NL: Controleer of het bestand voor vandaag al bestaat
+# EN: Check if the file for today already exists
+
 _CheckFileExist($SavePath & "\" & $SaveFile)
 
-# Bouw de interface op
+# NL: Bouw de interface op
+# EN: Create the GUI
 _CreateUX($Darkmode, $FontName)
 
-# Stel de fontsize van de Editbox in op de ingestelde grootte
+# NL: Stel de fontsize van $Notitie in op de ingestelde grootte
+# EN: Set the fontsize for $Notitie to the configured setting
+
 GUICtrlSetFont($Notitie, $FontSize)
 
-# Lees de bestaande bestanden in
+# NL: Lees de bestaande bestanden in
+# EN: Parse existing files
+
 if $Singlefile = "false" then
 	_PopulateListBox($SavePath)
 Else
@@ -150,21 +157,32 @@ Else
 	GUICtrlSetState($NotesList, 128)
 EndIf
 
-# Open het bestand van vandaag en toon de inhoud
+# NL: Open het bestand van vandaag en toon de inhoud
+# EN: Open the file for today and show the content
+
 _OpenFile($SavePath & "\" & $SaveFile)
 
-# Disable de knoppen voor Archive en Delete op de file van vandaag
+# NL: Disable de knoppen voor Archive en Delete op de file van vandaag
+# EN: Disable buttons for Archive and Delete on today's file 
+
 GuiCtrlSendMsg($btnArchive, $EM_SETREADONLY, 1, 0)
 GuiCtrlSendMsg($btnDelete, $EM_SETREADONLY, 1, 0)
 
-# Stel de timer in voor autosave
+# NL: Stel de timer in voor autosave (45ms)
+# EN: Set a timer for autosave (45ms)
+
 AdlibRegister("TimerSaveFile", 45)
+
+# NL: Activeer reminders als $RemindersActive is ingesteld op true
+# EN: Activate reminders if $RemindersActive is set to true
 
 If $RemindersActive = "true" then
 	AdLibRegister("TimerReminderCheck", 490)
 Endif
 
-# NL: 
+# NL: Registreer de Ctrl-Scrollwheel om de zoom aan te zetten in $Notitie
+# EN: Register CTRL-Scrollwheel to enable zoom in $Notitie
+
 GUIRegisterMsg($WM_MOUSEWHEEL, "_ScrollZoom")
 $n = $FontSize
 
@@ -213,7 +231,12 @@ While 1
 			$SelectedFile = GUICtrlRead($NotesList)
 			AdlibUnRegister("TimerSaveFile")
 			AdLibUnRegister("TimerReminderCheck")
-
+		
+		case $btnArchive
+			$SelectedFile = GUICtrlRead($NotesList)
+			AdlibUnRegister("TimerSaveFile")
+			AdLibUnRegister("TimerReminderCheck")
+			
 	EndSwitch
 
 WEnd
