@@ -50,6 +50,7 @@
 Dim $inifile, $Title, $Version, $SavePath, $SaveFilePattern, $EditOldNotes, $NotesList
 Dim $SaveFile, $cachefile, $RemStart, $txtfile, $RemindersTitle, $SavePath, $Notitie
 Dim $frmmain, $FormTitlem, $SingleFile, $ReminderStart, $xpos, $ypos, $transparancy, $ReminderTitle
+Dim $bgColor, $txtColor, $n
 
 Func _ArchiveJot($PathToLook, $FileToArchive, $ArchivePath)
 

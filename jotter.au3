@@ -108,6 +108,7 @@ Local $Darkmode = INIRead($iniFile, "system", "Darkmode", "false")
 Local $NoEmptySave = INIRead($iniFile, "system", "NoEmptySave", "false")
 
 Local $RemindersActive = INIRead($iniFile, "Reminders", "Active", "false")
+
 if $RemindersActive = "true" Then
 	Global $RemindersTitle = "ON"
 Else
