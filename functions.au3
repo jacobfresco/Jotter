@@ -10,6 +10,7 @@
 # Added: Modern UI
 # Added: automatically archive jots after older then a specific number of days
 # Added: color setting for the window
+# Added: Zoom in and out ($Notitie)
 
 
 # Changelog v0.2.2

@@ -10,6 +10,7 @@ A small note taking app for anyone to use as they see fit. It autosaves every 45
 * Modern UI
 * Automatically archive jots after older then a specific number of days
 * Background color setting
+* Ability to zoom in or out 
 
 ### Release 0.2.2
 

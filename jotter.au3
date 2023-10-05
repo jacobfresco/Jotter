@@ -18,6 +18,7 @@ Global $JotterVersion = "0.3.0"
 # Added: Modern UI
 # Added: automatically archive jots after older then a specific number of days
 # Added: color setting for the window
+# Added: Zoom in and out ($Notitie)
 
 
 # Changelog v0.2.2
@@ -163,6 +164,7 @@ If $RemindersActive = "true" then
 	AdLibRegister("TimerReminderCheck", 490)
 Endif
 
+# NL: 
 GUIRegisterMsg($WM_MOUSEWHEEL, "_ScrollZoom")
 $n = $FontSize
 
