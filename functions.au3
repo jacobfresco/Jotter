@@ -287,7 +287,17 @@ Func TimerReminderCheck()
 	_CheckForReminders($ReminderStart, $SavePath & "\" & $SaveFile)
 EndFunc
 
-
-
+Func _ScrollZoom($hWnd,$iMsg, $iwParam, $ilParam)
+    #forceref $hwnd, $iMsg, $ilParam
+    Local $a = GUIGetCursorInfo($gui)
+    If $a[4] = $Notitie Then 
+		Local $iDelta = BitShift($iwParam, 16) 
+        If $iDelta > 0 Then $n += 1
+        If $iDelta < 0 Then $n -= 1
+		$FontSize = $n
+        GUICtrlSetFont($Notitie, $FontSize)
+    EndIf
+  Return $GUI_RUNDEFMSG
+EndFunc
 
 

@@ -121,7 +121,7 @@ Local $transparancy = INIRead($iniFile, "Window", "Transparancy", "250")
 Local $bgColor = INIRead($iniFile, "Window", "bgColor", "#FFFFFF")
 Local $txtColor = INIRead($iniFile, "Window", "txtColor", "#000000")
 Local $FontName = INIRead($iniFile, "Window", "Font", "Segoe UI")
-Local $FontSize = INIRead($iniFile, "Window", "FontSize", "10")
+Global $FontSize = INIRead($iniFile, "Window", "FontSize", "10")
 
 # Definieer de te gebruiken bestandsnamen
 if $Singlefile = "false" then
@@ -163,6 +163,8 @@ If $RemindersActive = "true" then
 	AdLibRegister("TimerReminderCheck", 490)
 Endif
 
+GUIRegisterMsg($WM_MOUSEWHEEL, "_ScrollZoom")
+$n = $FontSize
 
 While 1
 	$nMsg = GUIGetMsg()
