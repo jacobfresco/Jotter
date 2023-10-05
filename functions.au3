@@ -50,7 +50,7 @@
 Dim $inifile, $Title, $Version, $SavePath, $SaveFilePattern, $EditOldNotes, $NotesList
 Dim $SaveFile, $cachefile, $RemStart, $txtfile, $RemindersTitle, $SavePath, $Notitie
 Dim $frmmain, $FormTitlem, $SingleFile, $ReminderStart, $xpos, $ypos, $transparancy, $ReminderTitle
-Dim $bgColor, $txtColor, $FontName, $n, $FontSize
+Dim $bgColor, $txtColor, $FontName, $n, $FontSize, $FileToArchive, $FileToDelete
 
 Func _ArchiveJot($PathToLook, $FileToArchive, $ArchivePath)
 
@@ -65,8 +65,8 @@ Func _ArchiveViaButton($FileToArchive)
 EndFunc
 
 
-Func _DeleteViaButton()
-
+Func _DeleteViaButton($FileToDelete)
+	MsgBox($MB_SYSTEMMODAL, "Delete", "File:" & $FileToDelete)
 EndFunc
 
 

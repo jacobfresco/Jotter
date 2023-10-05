@@ -232,6 +232,7 @@ While 1
 			$SelectedFile = GUICtrlRead($NotesList)
 			AdlibUnRegister("TimerSaveFile")
 			AdLibUnRegister("TimerReminderCheck")
+			_DeleteViaButton($SelectedFile)
 		
 		case $btnArchive
 			$SelectedFile = GUICtrlRead($NotesList)
