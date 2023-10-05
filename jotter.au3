@@ -71,6 +71,7 @@ Global $JotterVersion = "0.3.0"
 #include <functions.au3>
 #include <TrayConstants.au3>
 #include <FileConstants.au3>
+#include <FontConstants.au3>
 #include <ux.au3>
 
 # NL: Creeer de variabelen voor eerste gebruik
@@ -141,11 +142,6 @@ _CheckFileExist($SavePath & "\" & $SaveFile)
 # NL: Bouw de interface op
 # EN: Create the GUI
 _CreateUX($Darkmode, $FontName)
-
-# NL: Stel de fontsize van $Notitie in op de ingestelde grootte
-# EN: Set the fontsize for $Notitie to the configured setting
-
-GUICtrlSetFont($Notitie, $FontSize)
 
 # NL: Lees de bestaande bestanden in
 # EN: Parse existing files
@@ -236,7 +232,7 @@ While 1
 			$SelectedFile = GUICtrlRead($NotesList)
 			AdlibUnRegister("TimerSaveFile")
 			AdLibUnRegister("TimerReminderCheck")
-			
+
 	EndSwitch
 
 WEnd

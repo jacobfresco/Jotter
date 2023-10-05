@@ -267,7 +267,7 @@ Func _ScrollZoom($hWnd,$iMsg, $iwParam, $ilParam)
         If $iDelta > 0 Then $n += 1
         If $iDelta < 0 Then $n -= 1
 		$FontSize = $n
-        GUICtrlSetFont($Notitie, $FontSize)
+        GUICtrlSetFont($Notitie, $FontSize, 0, 0, $FontName, 5)
     EndIf
     Return $GUI_RUNDEFMSG
 EndFunc

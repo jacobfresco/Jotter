@@ -90,7 +90,7 @@ Func _CreateUX($Darkmode, $FontName)
 	GUICtrlSetImage($btnDelete, $assets & "delete.ico")
 
 	$Notitie = GUICtrlCreateEdit("", 4, 52, $ui_width-8, $ui_height-56, BitOR($ES_AUTOVSCROLL,$ES_WANTRETURN,$WS_VSCROLL,$WS_EX_WINDOWEDGE))
-	GUICtrlSetFont(-1, 11, 500, Default, $Fontname, 5)
+	GUICtrlSetFont($Notitie, $FontSize, 0, 0, $FontName, 5)
 	if $Darkmode = "true" then
 		GUICtrlSetColor($Notitie, 0xFFFFFF)
 		GUICtrlSetBkColor($Notitie, 0x000000)
