@@ -39,7 +39,6 @@ SingleFile=[true|false]
 SaveFileName=%DD-%MM-%YYYY
 # SaveFileName=singlesave
 EditOldNotes=[true|false]
-FontSize=[fontsize for the font within the editbox]
 Darkmode=[true|false]
 NoEmptySave=[true|false]
 
@@ -55,6 +54,7 @@ bgColor=[Hexcode for background color, eg. 0x000000]
 txtColor=[Hexcode for font color, eg. 0xFFFFFF]
 Transparancy=[A value between 0 and 250]
 Font=[Name of an installed font]
+FontSize=[fontsize for the font within the editbox]
 ```
 
 ### Files and filenames
