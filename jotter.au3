@@ -78,6 +78,7 @@ Global $JotterVersion = "0.3.0"
 Dim $inifile, $Title, $Version, $SavePath, $SaveFilePattern, $EditOldNotes, $NotesList
 Dim $SaveFile, $cachefile, $RemStart, $txtfile, $RemindersTitle, $SavePath, $Notitie
 Dim $frmmain, $FormTitlem, $SingleFile, $ReminderStart, $xpos, $ypos, $transparancy, $ReminderTitle
+Dim $bgColor, $txtColor 
 
 Dim $notificationCounter = 0
 
@@ -117,6 +118,8 @@ Global $ReminderTitle = INIRead($inifile, "Reminders", "Title", "Jotter Reminder
 Local $xpos = INIRead($iniFile, "Window", "Xpos", "100")
 Local $ypos = INIRead($iniFile, "Window", "ypos", "100")
 Local $transparancy = INIRead($iniFile, "Window", "Transparancy", "250")
+Local $bgColor = INIRead($iniFile, "Window", "bgColor", "#FFFFFF")
+Local $txtColor = INIRead($iniFile, "Window", "txtColor", "#000000")
 Local $FontName = INIRead($iniFile, "Window", "Font", "Segoe UI")
 
 

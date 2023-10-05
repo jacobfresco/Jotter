@@ -54,7 +54,7 @@ Func _CreateUX($Darkmode, $FontName)
 	$frmmain = GUICreate("", $ui_width, $ui_height, $xpos, $ypos, $WS_POPUP, $WS_EX_CONTROLPARENT)
 
 	GUICtrlSetFont(-1, 10, 500, Default, $Fontname, 5)
-	WinSetTrans($frmmain, "", $transparancy)
+	WinSetTrans($frmmain, "", $Transparancy)
 	if $Darkmode = "true" then
 		GUISetBkColor(0x000000, $frmMain)
 		GUICtrlSetColor($frmMain, 0xFFFFFF)
@@ -94,6 +94,9 @@ Func _CreateUX($Darkmode, $FontName)
 	if $Darkmode = "true" then
 		GUICtrlSetColor($Notitie, 0xFFFFFF)
 		GUICtrlSetBkColor($Notitie, 0x000000)
+	Else
+		GUICtrlSetColor($Notitie, $txtColor)
+		GUICtrlSetBkColor($Notitie, $bgColor)
 	EndIf
 	GUISetState(@SW_SHOW)
 
