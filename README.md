@@ -51,6 +51,7 @@ Title=[The title showing on the reminder]
 [Window]
 Xpos=[A point on the screen]
 Ypos=[Another point on the screen]
+bgColor=[Hexcode for background color, eg. #FFFFFF]
 Transparancy=[A value between 0 and 250]
 Font=[Name of an installed font]
 ```
@@ -82,6 +83,9 @@ The reminder will be shown on the time set and show the text after the time. Ple
 
 ### Tranparancy
 You can make the Jotter window more or less transparant by setting a value in [jotter.ini](https://github.com/jacobfresco/jotter#configuring-jotterini). The value needs to be between 0 and 250. Please note that setting the value too low (i.e below 150) will result in a nearly invisible window and a unusable app. The recommended value for this setting is 220
+
+### bgColor
+Choose a background color for your window. This setting is ignored when Darkmode is active. Please note that the font color in normale mode is always black. Choose your background color wisely.
 
 ## Creating new files with a default content
 If you wish to create new files with a default content, please create a file called 'default.txt' in the same directory as the executables. The content of that file will be the default content of new files created by Jotter. If a file already exists (i.e. if you use the single file option), the default.txt will be ignored
