@@ -72,6 +72,7 @@ Global $JotterVersion = "0.3.0"
 #include <TrayConstants.au3>
 #include <FileConstants.au3>
 #include <FontConstants.au3>
+#include <GuiComboBoxEx.au3>
 #include <ux.au3>
 
 # NL: Creeer de variabelen voor eerste gebruik
@@ -98,7 +99,7 @@ EndIf
 Local $Title = INiRead($iniFile, "Main", "Title", "Jotter")
 Local $Version = $JotterVersion
 
-Local $SavePath = INiRead($iniFile, "system", "SavePath", EnvGet("USERPROFILE") & "\documents\jotter")
+Global $SavePath = INiRead($iniFile, "system", "SavePath", EnvGet("USERPROFILE") & "\documents\jotter")
 Local $ArchivePath = IniRead($inifile, "system", "ArchivePath", EnvGet("USERPROFILE") & "\documents\jotter\Archive")
 Local $SaveFilePattern = INiRead($iniFile, "system", "SaveFileName", "%DD-%MM-%YYYY")
 Local $SingleFile = INiRead($iniFile, "system", "SingleFile", "false")
@@ -152,18 +153,14 @@ if $Singlefile = "false" then
 Else
 	GUICtrlSetData($NotesList, $TodayFile, $TodayFile)
 	GUICtrlSetState($NotesList, 128)
+	GUICtrlSetState($btnArchive, $GUI_DISABLE)
+	GUICtrlSetState($btnDelete, $GUI_DISABLE)
 EndIf
 
 # NL: Open het bestand van vandaag en toon de inhoud
 # EN: Open the file for today and show the content
 
 _OpenFile($SavePath & "\" & $SaveFile)
-
-# NL: Disable de knoppen voor Archive en Delete op de file van vandaag
-# EN: Disable buttons for Archive and Delete on today's file 
-
-GuiCtrlSendMsg($btnArchive, $EM_SETREADONLY, 1, 0)
-GuiCtrlSendMsg($btnDelete, $EM_SETREADONLY, 1, 0)
 
 # NL: Stel de timer in voor autosave (45ms)
 # EN: Set a timer for autosave (45ms)
@@ -182,11 +179,6 @@ Endif
 
 GUIRegisterMsg($WM_MOUSEWHEEL, "_ScrollZoom")
 $n = $FontSize
-
-# NL: Disable de knoppen voor Archiveren en Verwijderen
-# EN: Disable the buttons for Archive and Delete
-GUICtrlSetState($btnArchive, $GUI_DISABLE)
-GUICtrlSetState($btnDelete, $GUI_DISABLE)
 
 While 1
 	$nMsg = GUIGetMsg()
@@ -238,8 +230,14 @@ While 1
 			$SelectedFile = GUICtrlRead($NotesList)
 			AdlibUnRegister("TimerSaveFile")
 			AdLibUnRegister("TimerReminderCheck")
-			_ArchiveViaButton($SelectedFile)
-
+			_ArchiveViaButton($SavePath, $SelectedFile, $ArchivePath)
+			$SaveFile = $TodayFile
+			GUICtrlSetData($NotesList, "")
+			_PopulateListBox($SavePath)
+			_OpenFile($SavePath & "\" & $TodayFile)
+			GUICtrlSetData($FormTitle, _SetFormTitle("ON", "ON", $RemindersTitle))
+			AdlibRegister("TimerSaveFile", 45)
+			AdLibRegister("TimerReminderCheck", 490)
 	EndSwitch
 
 WEnd

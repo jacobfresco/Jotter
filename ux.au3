@@ -74,8 +74,7 @@ Func _CreateUX($Darkmode, $FontName)
 	Global $btnClose = GUICtrlCreateButton("", $ui_width-21, 2, 20, 20, BitOR($BS_ICON,$BS_FLAT,$BS_VCENTER))
 	GUICtrlSetImage($btnClose, $assets & "close.ico")
 
-
-	$NotesList = GUICtrlCreateCombo("", 4, 25, 300, 29, BitOR($CBS_DROPDOWNLIST,$CBS_AUTOHSCROLL))
+	$NotesList = GUICtrlCreateCombo("", 4, 25, 300, 29, BitOR($CBS_DROPDOWNLIST,$CBS_AUTOHSCROLL,$WS_BORDER),BitOR($WS_EX_CLIENTEDGE,$WS_EX_STATICEDGE))
 	GUICtrlSetFont(-1, 10, 500, Default, $Fontname, 5)
 	if $Darkmode = "true" then
 		GUICtrlSetColor($NotesList, 0xFFFFFF)
