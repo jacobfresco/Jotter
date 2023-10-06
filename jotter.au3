@@ -161,6 +161,8 @@ EndIf
 # EN: Open the file for today and show the content
 
 _OpenFile($SavePath & "\" & $SaveFile)
+GUICtrlSetState($btnArchive, $GUI_DISABLE)
+GUICtrlSetState($btnDelete, $GUI_DISABLE)
 
 # NL: Stel de timer in voor autosave (45ms)
 # EN: Set a timer for autosave (45ms)
@@ -224,7 +226,16 @@ While 1
 			$SelectedFile = GUICtrlRead($NotesList)
 			AdlibUnRegister("TimerSaveFile")
 			AdLibUnRegister("TimerReminderCheck")
-			_DeleteViaButton($SelectedFile)
+			_DeleteViaButton($SavePath, $SelectedFile)
+			$SaveFile = $TodayFile
+			GUICtrlSetData($NotesList, "")
+			_PopulateListBox($SavePath)
+			_OpenFile($SavePath & "\" & $TodayFile)
+			GUICtrlSetData($FormTitle, _SetFormTitle("ON", "ON", $RemindersTitle))
+			GUICtrlSetState($btnArchive, $GUI_DISABLE)
+			GUICtrlSetState($btnDelete, $GUI_DISABLE)
+			AdlibRegister("TimerSaveFile", 45)
+			AdLibRegister("TimerReminderCheck", 490)
 		
 		case $btnArchive
 			$SelectedFile = GUICtrlRead($NotesList)
@@ -236,6 +247,8 @@ While 1
 			_PopulateListBox($SavePath)
 			_OpenFile($SavePath & "\" & $TodayFile)
 			GUICtrlSetData($FormTitle, _SetFormTitle("ON", "ON", $RemindersTitle))
+			GUICtrlSetState($btnArchive, $GUI_DISABLE)
+			GUICtrlSetState($btnDelete, $GUI_DISABLE)
 			AdlibRegister("TimerSaveFile", 45)
 			AdLibRegister("TimerReminderCheck", 490)
 	EndSwitch

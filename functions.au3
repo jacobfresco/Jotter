@@ -69,12 +69,12 @@ Func _ArchiveViaButton($PathToLook, $FileToArchive, $ToArchivePath)
 	$ArchiveQuestion = MsgBox($MB_YESNO, "Archive " & $FileToArchive, "Are you sure you want to archive " & $FileToArchive & "?")
 	if $ArchiveQuestion = $IDYES Then
 		FileMove($PathToLook & "\" & $FileToArchive, $ToArchivePath, $FC_OVERWRITE)
+		If @error > 0 then
+			MsgBox($MB_SYSTEMMODAL, "Error!", "Error archiving " & $PathToLook & "\" & $FileToArchive & ". Exiting...")
+			Exit
+		EndIf
 	EndIf
-EndFunc
 
-
-Func _DeleteViaButton($FileToDelete)
-	MsgBox($MB_SYSTEMMODAL, "Delete", "File:" & $FileToDelete)
 EndFunc
 
 
@@ -167,6 +167,24 @@ Func _ConvertFileName($Pattern)
 
 EndFunc
 
+
+Func _DeleteViaButton($PathToLook, $FileToDelete)
+
+	# NL: Verwijder het gekozen bestand (geen prullenbak, weg is weg)
+	# EN: Remove the selected file. No Recycle Bin though!
+
+	$DeleteQuestion = MsgBox($MB_YESNO, "Delete " & $FileToDelete, "Are you sure you want to delete " & $FileToDelete & "?")
+		If $DeleteQuestion = $IDYES Then
+			FileDelete($PathToLook & "\" & $FileToDelete)
+			If @error > 0 then
+				MsgBox($MB_SYSTEMMODAL, "Error!", "Error deleting " & $PathToLook & "\" & $FileToDelete & ". Exiting...")
+				Exit
+			EndIf
+		EndIf
+
+EndFunc
+
+
 Func _FileCheckOnExit($Content, $TodayFileVar)
 
 	# NL: Als de jot leeg is, verwijder het bestand bij afsluiten (optie in the INI)
@@ -174,6 +192,10 @@ Func _FileCheckOnExit($Content, $TodayFileVar)
 
 	If $Content = "" Then
 		FileDelete($TodayFileVar)
+		If @error > 0 then
+			MsgBox($MB_SYSTEMMODAL, "Error!", "Error deleting " & $TodayFileVar & ". Exiting...")
+			Exit
+		EndIf
 	EndIf
 
 EndFunc
@@ -205,6 +227,7 @@ Func _OpenFile($FileToOpen)
 	EndIf
 	FileClose($hFileOpen)
 	GUICtrlSetData($Notitie, $txtNote)
+
 EndFunc
 
 
@@ -254,6 +277,7 @@ Func _Sort(ByRef $aArray)
         Next
     Next
     Return $aArray
+
 EndFunc
 
 
@@ -275,6 +299,7 @@ Func _SaveFile($FileToSave)
 		Exit
 	EndIf
 	FileClose($hFileOpen)
+
 EndFunc
 
 
@@ -313,18 +338,22 @@ Func _SetFormTitle($Edit, $AutoSave, $Reminders)
 EndFunc
 
 Func TimerSaveFile()
+	
 	# NL: Kapstokfunctie voor het automatisch saven van de notitie met AdlibRegister
 	# EN: Helicopter function for automatically saving notes with AdlibRegister
 
 	_SaveFile($SavePath & "\" & $SaveFile)
+
 EndFunc
 
 
 Func TimerReminderCheck()
+	
 	# NL: Kapstopfunctie voor het automatisch starten van de Check op reminders
 	# EN: Helicopterfunction for automatically starting the check for reminders 
 
 	_CheckForReminders($ReminderStart, $SavePath & "\" & $SaveFile)
+
 EndFunc
 
 
