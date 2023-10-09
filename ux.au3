@@ -63,7 +63,7 @@ Func _CreateUX($Darkmode, $FontName)
 	Opt("GUICoordMode", 1)
 	
 	$frmmain = GUICreate("", $ui_width, $ui_height, $xpos, $ypos, $WS_POPUP, $WS_EX_CONTROLPARENT)
-	_GuiRoundCorners($frmMain, $xpos-5,$ypos-5, $ui_width+5, $ui_height+5, 10, 10)
+	_GuiRoundCorners($frmMain, $xpos-5,$ypos-5, $ui_width+5, $ui_height+5, 7, 7)
 
 	Local $XS_pos, $X
 	GUICtrlSetFont(-1, 10, 500, Default, $Fontname, 5)
@@ -101,7 +101,7 @@ Func _CreateUX($Darkmode, $FontName)
 	Global $btnDelete = GUICtrlCreateButton("", 332, 29, 16,16, BitOR($BS_ICON,$BS_FLAT,$BS_VCENTER))
 	GUICtrlSetImage($btnDelete, $assets & "delete.ico")
 
-	$Notitie = GUICtrlCreateEdit("", 4, 52, $ui_width-11, $ui_height-91, BitOR($ES_AUTOVSCROLL,$ES_WANTRETURN,$WS_VSCROLL,$WS_EX_WINDOWEDGE))
+	$Notitie = GUICtrlCreateEdit("", 4, 52, $ui_width-11, $ui_height-89, BitOR($ES_AUTOVSCROLL,$ES_WANTRETURN,$WS_VSCROLL,$WS_EX_WINDOWEDGE))
 	GUICtrlSetFont($Notitie, $FontSize, 0, 0, $FontName, 5)
 	if $Darkmode = "true" then
 		GUICtrlSetColor($Notitie, 0xFFFFFF)
