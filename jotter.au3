@@ -63,9 +63,6 @@ Global $JotterVersion = "0.3.0"
 #include <MsgBoxConstants.au3>
 #include <Array.au3>
 #include <GuiStatusBar.au3>
-#include <Date.au3>
-#include <MsgBoxConstants.au3>
-#include <Array.au3>
 #include <File.au3>
 #include <functions.au3>
 #include <TrayConstants.au3>
