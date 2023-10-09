@@ -43,16 +43,29 @@ Global $assets = @ScriptDir & "\assets\"
 Global $ui_width = 826
 Global $ui_height = 474
 
+Func _GuiRoundCorners($h_win, $i_x1, $i_y1, $i_x2, $i_y2, $i_x3, $i_y3)
+	Local $XS_pos, $XS_reta, $XS_retb, $XS_ret2
+	$XS_pos = WinGetPos($h_win)
+	$XS_reta = _WinAPI_CreateRoundRectRgn ( 0, 0, $XS_pos[2], $XS_pos[3]-30, $i_x3, $i_y3 )
+	$XS_retb = _WinAPI_CreateRectRgn (0, $XS_pos[2]-$XS_pos[1]/2, $XS_pos[2], $XS_pos[3] )
+	$XS_retc = _WinAPI_CombineRgn ( $XS_reta, $XS_reta, $XS_retb, $RGN_OR  )
+	_WinAPI_DeleteObject($XS_retb)
+	_WinAPI_SetWindowRgn($h_win, $XS_reta)
+EndFunc   
+
 Func _CreateUX($Darkmode, $FontName)
 
 	# NL: Creeer de Jotter GUI
 	# EN: Create the Jotter GUI
 
 	# Dimensions: 826x474px
-	
-	Opt("GUICoordMode", 1)
-	$frmmain = GUICreate("", $ui_width, $ui_height, $xpos, $ypos, $WS_POPUP, $WS_EX_CONTROLPARENT)
 
+	Opt("GUICoordMode", 1)
+	
+	$frmmain = GUICreate("", $ui_width, $ui_height, $xpos, $ypos, $WS_POPUP, $WS_EX_CONTROLPARENT)
+	_GuiRoundCorners($frmMain, $xpos-5,$ypos-5, $ui_width+5, $ui_height+5, 10, 10)
+
+	Local $XS_pos, $X
 	GUICtrlSetFont(-1, 10, 500, Default, $Fontname, 5)
 	WinSetTrans($frmmain, "", $Transparancy)
 	if $Darkmode = "true" then
@@ -71,7 +84,7 @@ Func _CreateUX($Darkmode, $FontName)
 		GUICtrlSetColor($FormTitle, 0xFFFFFF)
 	Endif
 
-	Global $btnClose = GUICtrlCreateButton("", $ui_width-21, 2, 20, 20, BitOR($BS_ICON,$BS_FLAT,$BS_VCENTER))
+	Global $btnClose = GUICtrlCreateButton("", $ui_width-25, 2, 20, 20, BitOR($BS_ICON,$BS_FLAT,$BS_VCENTER))
 	GUICtrlSetImage($btnClose, $assets & "close.ico")
 
 	$NotesList = GUICtrlCreateCombo("", 4, 25, 300, 29, BitOR($CBS_DROPDOWNLIST,$CBS_AUTOHSCROLL,$WS_BORDER),BitOR($WS_EX_CLIENTEDGE,$WS_EX_STATICEDGE))
@@ -88,7 +101,7 @@ Func _CreateUX($Darkmode, $FontName)
 	Global $btnDelete = GUICtrlCreateButton("", 332, 29, 16,16, BitOR($BS_ICON,$BS_FLAT,$BS_VCENTER))
 	GUICtrlSetImage($btnDelete, $assets & "delete.ico")
 
-	$Notitie = GUICtrlCreateEdit("", 4, 52, $ui_width-8, $ui_height-56, BitOR($ES_AUTOVSCROLL,$ES_WANTRETURN,$WS_VSCROLL,$WS_EX_WINDOWEDGE))
+	$Notitie = GUICtrlCreateEdit("", 4, 52, $ui_width-11, $ui_height-91, BitOR($ES_AUTOVSCROLL,$ES_WANTRETURN,$WS_VSCROLL,$WS_EX_WINDOWEDGE))
 	GUICtrlSetFont($Notitie, $FontSize, 0, 0, $FontName, 5)
 	if $Darkmode = "true" then
 		GUICtrlSetColor($Notitie, 0xFFFFFF)
