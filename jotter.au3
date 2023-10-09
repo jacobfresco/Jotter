@@ -57,7 +57,6 @@ Global $JotterVersion = "0.3.0"
 #include <GUIConstantsEx.au3>
 #include <ButtonConstants.au3>
 #include <GuiRichEdit.au3>
-#include <GUIConstantsEx.au3>
 #include <GuiButton.au3>
 #include <WindowsConstants.au3>
 #include <Date.au3>
@@ -74,6 +73,9 @@ Global $JotterVersion = "0.3.0"
 #include <FontConstants.au3>
 #include <GuiComboBoxEx.au3>
 #include <ux.au3>
+#include <WinAPIGdi.au3>
+#include <WinAPIHObj.au3>
+#include <WinAPISys.au3>
 
 # NL: Creeer de variabelen voor eerste gebruik
 # EN: Create variables for first use
