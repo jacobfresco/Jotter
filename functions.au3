@@ -53,7 +53,7 @@ Dim $frmmain, $FormTitlem, $SingleFile, $ReminderStart, $xpos, $ypos, $transpara
 Dim $bgColor, $txtColor, $FontName, $n, $FontSize, $FileToArchive, $FileToDelete
 Dim $ArchiveQuestion, $ToArchivePath
 
-Func _ArchiveJot($PathToLook, $FileToArchive, $ArchivePath)
+Func _ArchiveonStartup($PathToLook, $ArchivePath, $NumDays)
 
 	# NL: Archiveer $FileToArchive vanuit $PathToLook naar $ArchivePath
 	# EN: Archive $FileToArchive from $PathToLook to $ArchivePath

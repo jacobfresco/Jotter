@@ -81,6 +81,7 @@ Dim $inifile, $Title, $Version, $SavePath, $SaveFilePattern, $EditOldNotes, $Not
 Dim $SaveFile, $cachefile, $RemStart, $txtfile, $RemindersTitle, $SavePath, $Notitie
 Dim $frmmain, $FormTitlem, $SingleFile, $ReminderStart, $xpos, $ypos, $transparancy, $ReminderTitle
 Dim $bgColor, $txtColor, $FontName, $n, $FontSize
+Dim $ArchiveToPath, $ArchiveNumDays
 
 Dim $notificationCounter = 0
 
@@ -99,7 +100,9 @@ Local $Title = INiRead($iniFile, "Main", "Title", "Jotter")
 Local $Version = $JotterVersion
 
 Global $SavePath = INiRead($iniFile, "system", "SavePath", EnvGet("USERPROFILE") & "\documents\jotter")
-Local $ArchivePath = IniRead($inifile, "system", "ArchivePath", EnvGet("USERPROFILE") & "\documents\jotter\Archive")
+Local $ArchiveToPath = IniRead($inifile, "system", "ArchivePath", EnvGet("USERPROFILE") & "\documents\jotter\Archive")
+local $AutoArchive = IniRead($inifile, "system", "AutoArchive", "false" )
+local $ArchiveNumDays = IniRead($inifile, "system", "ArchiveNumDays", "14" )
 Local $SaveFilePattern = INiRead($iniFile, "system", "SaveFileName", "%DD-%MM-%YYYY")
 Local $SingleFile = INiRead($iniFile, "system", "SingleFile", "false")
 Local $EditOldNotes = INiRead($iniFile, "system", "EditOldNotes", "False")
@@ -137,16 +140,23 @@ EndIf
 
 # NL: Controleer of het bestand voor vandaag al bestaat
 # EN: Check if the file for today already exists
-
 _CheckFileExist($SavePath & "\" & $SaveFile)
+
+
+# NL: Archiveer oude bestanden indien $AutoArchive = True
+# EN: Archive old files if $AutoArchive = true 
+If $AutoArchive = "true" Then
+	_ArchiveonStartup($SavePath, $ArchiveToPath, $ArchiveNumDays)
+EndIf
+
 
 # NL: Bouw de interface op
 # EN: Create the GUI
 _CreateUX($Darkmode, $FontName)
 
+
 # NL: Lees de bestaande bestanden in
 # EN: Parse existing files
-
 if $Singlefile = "false" then
 	_PopulateListBox($SavePath)
 Else
@@ -156,30 +166,31 @@ Else
 	GUICtrlSetState($btnDelete, $GUI_DISABLE)
 EndIf
 
+
 # NL: Open het bestand van vandaag en toon de inhoud
 # EN: Open the file for today and show the content
-
 _OpenFile($SavePath & "\" & $SaveFile)
 GUICtrlSetState($btnArchive, $GUI_DISABLE)
 GUICtrlSetState($btnDelete, $GUI_DISABLE)
 
+
 # NL: Stel de timer in voor autosave (45ms)
 # EN: Set a timer for autosave (45ms)
-
 AdlibRegister("TimerSaveFile", 45)
+
 
 # NL: Activeer reminders als $RemindersActive is ingesteld op true
 # EN: Activate reminders if $RemindersActive is set to true
-
 If $RemindersActive = "true" then
 	AdLibRegister("TimerReminderCheck", 490)
 Endif
 
+
 # NL: Registreer de Ctrl-Scrollwheel om de zoom aan te zetten in $Notitie
 # EN: Register CTRL-Scrollwheel to enable zoom in $Notitie
-
 GUIRegisterMsg($WM_MOUSEWHEEL, "_ScrollZoom")
 $n = $FontSize
+
 
 While 1
 	$nMsg = GUIGetMsg()
@@ -240,7 +251,7 @@ While 1
 			$SelectedFile = GUICtrlRead($NotesList)
 			AdlibUnRegister("TimerSaveFile")
 			AdLibUnRegister("TimerReminderCheck")
-			_ArchiveViaButton($SavePath, $SelectedFile, $ArchivePath)
+			_ArchiveViaButton($SavePath, $SelectedFile, $ArchiveToPath)
 			$SaveFile = $TodayFile
 			GUICtrlSetData($NotesList, "")
 			_PopulateListBox($SavePath)
