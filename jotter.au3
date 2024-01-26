@@ -212,7 +212,6 @@ While 1
 				$SaveFile = $TodayFile
 				AdlibRegister("TimerSaveFile", 45)
 				AdLibRegister("TimerReminderCheck", 490)
-				# ConsoleWrite("Hit the right function (if then else)")
 				GUICtrlSetData($FormTitle, _SetFormTitle("ON", "ON", $RemindersTitle))
 				GUICtrlSetState($btnArchive, $GUI_DISABLE)
 				GUICtrlSetState($btnDelete, $GUI_DISABLE)
